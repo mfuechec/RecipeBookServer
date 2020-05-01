@@ -1,34 +1,59 @@
 let express = require('express');
 let router = express.Router();
+let db = require('../db/index');
 
 router.get('/', (req, res, next) => {
-    // A get request to editFavoriteDrinks should return a randomized list of 25 drinks
-    res.status(200).json({
-        message: 'Handling GET requests to /editFavoriteDrinks'
+    db.showFavoritedDrinks((error, response) => {
+        if (error) {
+            throw error;
+        } else {
+            res.status(201).json({
+                message: 'Handled GET request to /editFavoriteDrinks',
+                response: response
+            })
+        }
     })
 })
 
 router.post('/', (req, res, next) => {
-    let drink = req.body;
-    res.status(201).json({
-        message: 'Handling POST requests to /editFavoriteDrinks',
-        drink: drink
-    })
+    let meal = req.body;
+    db.addFavoritedDrink(meal, (error, response) => {
+        if (error) {
+            throw error;
+        } else {
+            res.status(201).json({
+                message: 'Handled POST request to /editFavoriteDrinks',
+                response: response
+            })
+        }
+    });
 })
 
 router.delete('/', (req, res, next) => {
-    let drink = req.body;
-    res.status(200).json({
-        message: 'Handling DELETE requests to /editFavoriteDrinks',
-        drink: drink
+    let meal = req.body;
+    db.deleteFavoritedDrink(meal, (error, response) => {
+        if (error) {
+            throw error;
+        } else {
+            res.status(201).json({
+                message: 'Handled DELETE request to /editFavoriteDrinks',
+                response: response
+            })
+        }
     })
 })
 
 router.patch('/', (req, res, next) => {
-    let drink = req.body;
-    res.status(200).json({
-        message: 'Handling PATCH requests to /editFavoriteDrinks',
-        drink: drink
+    let meal = req.body;
+    db.updateFavoritedDrink(meal, (error, response) => {
+        if (error) {
+            throw error;
+        } else {
+            res.status(200).json({
+                message: 'Handled PATCH request to /editFavoriteDrinks',
+                response: response
+            })
+        }
     })
 })
 
