@@ -23,10 +23,10 @@ router.delete('/', (req, res, next) => {
     })
 })
 
-router.put('/', (req, res, next) => {
+router.patch('/', (req, res, next) => {
     let meal = req.body;
     res.status(200).json({
-        message: 'Handling PUT requests to /editFavoriteMeals',
+        message: 'Handling PATCH requests to /editFavoriteMeals',
         meal: meal
     })
 })
