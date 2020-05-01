@@ -4,27 +4,57 @@ const mysqlConfig = require('./config.js');
 var connection = mysql.createConnection(mysqlConfig);
 
 showFavoritedMeals = function (callback) {
-    // This function returns a randomized list of 25 of the user's favorited meals
-    // Return error, no entries found or data on up to 25 meals
-    callback(null, 'Called showFavoritedMeals');
+    connection.query(`SELECT * from MealRecipes`, function (error, results) {
+        if (error) {
+            callback(error, null);
+        } else {
+            callback(null, results);
+        }
+    })
 }
 
 showFavoritedDrinks = function (callback) {
-    // This function returns a randomized list of 25 of the user's favorited drinks
-    // Return error, no entries found or data on up to 25 drinks
-    callback(null, 'Called showFavoritedDrinks');
+    connection.query(`SELECT * from DrinkRecipes`, function (error, results) {
+        if (error) {
+            callback(error, null);
+        } else {
+            callback(null, results);
+        }
+    })
 }
 
 addFavoritedMeal = function (meal, callback) {
     // This function must first check that the entry doesn't already exist, then, if not, add it
     // Returns error, entry already exists or successfully added to favorites
-    callback(null, 'Called addFavoritedMeal');
+
+    connection.query(`COUNT * from MealRecipes where id = meal.id`, function (error, results) {
+        if (error) {
+            callback(error, null);
+        } else {
+            if (results !== 0) {
+                let error = new Error('Entry already exists')
+            } else {
+                // Insert into the database
+            }
+        }
+    })
 }
 
 addFavoritedDrink = function (drink, callback) {
     // This function must first check that the entry doesn't already exist, then, if not, add it
     // Returns error, entry already exists or successfully added to favorites
-    callback(null, 'Called addFavoritedDrink');
+
+    connection.query(`COUNT * from DrinkRecipes where id = drink.id`, function (error, results) {
+        if (error) {
+            callback(error, null);
+        } else {
+            if (results !== 0) {
+                let error = new Error('Entry already exists')
+            } else {
+                // Insert into the database
+            }
+        }
+    })
 }
 
 deleteFavoritedMeal = function (meal, callback) {
