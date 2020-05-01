@@ -15,8 +15,17 @@ app.listen(port, () => {
 app.use('/editFavoriteMeals', addMealRoutes);
 app.use('/editFavoriteDrinks', addDrinkRoutes);
 
-app.get('/', (req, res) => {
-    res.status(200).json({
-        message: 'It works!'
-    })
-})
+app.use((req, res, next) => {
+    let error = new Error('Not found');
+    error.status = 404;
+    next(error);
+});
+
+app.use((error, req, res, next) => {
+    res.status(error.status || 500);
+    res.json({
+        error: {
+            message: error.message
+        }
+    });
+});
