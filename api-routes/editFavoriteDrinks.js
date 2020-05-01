@@ -8,24 +8,24 @@ router.get('/', (req, res, next) => {
     })
 })
 
-router.post('/:drink', (req, res, next) => {
-    let drink = req.params.drink;
+router.post('/', (req, res, next) => {
+    let drink = req.body;
     res.status(201).json({
         message: 'Handling POST requests to /editFavoriteDrinks',
         drink: drink
     })
 })
 
-router.delete('/:drink', (req, res, next) => {
-    let drink = req.params.drink;
+router.delete('/', (req, res, next) => {
+    let drink = req.body;
     res.status(200).json({
         message: 'Handling DELETE requests to /editFavoriteDrinks',
         drink: drink
     })
 })
 
-router.put('/:drink', (req, res, next) => {
-    let drink = req.params.drink;
+router.put('/', (req, res, next) => {
+    let drink = req.body;
     res.status(200).json({
         message: 'Handling PUT requests to /editFavoriteDrinks',
         drink: drink
