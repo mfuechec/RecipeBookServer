@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/:drink', (req, res, next) => {
     let drink = req.params.drink;
-    res.status(200).json({
+    res.status(201).json({
         message: 'Handling POST requests to /editFavoriteDrinks',
         drink: drink
     })
