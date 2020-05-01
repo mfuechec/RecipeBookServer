@@ -2,11 +2,14 @@ let express = require('express');
 let app = express();
 let port = process.env.PORT || 3000;
 let morgan = require('morgan');
+let bodyParser = require('body-parser');
 
 let addMealRoutes = require('./api-routes/editFavoriteMeals');
 let addDrinkRoutes = require('./api-routes/editFavoriteDrinks');
 
 app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
