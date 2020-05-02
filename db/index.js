@@ -17,13 +17,103 @@ showFavoritedMeals = function (callback) {
 }
 
 addFavoritedMeal = function (meal, callback) {
-    connection.query(`INSERT IGNORE INTO MealRecipes (name, instructions, image, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, ingredient7, ingredient8, ingredient9, ingredient10, ingredient11, ingredient12, ingredient13, ingredient14, ingredient15, ingredient16, ingredient17, ingredient18, ingredient19, ingredient20, measurement1, measurement2, measurement3, measurement4, measurement5, measurement6, measurement7, measurement8, measurement9, measurement10, measurement11, measurement12, measurement13, measurement14, measurement15, measurement16, measurement17, measurement18, measurement19, measurement20, user) Values ("mfuechec---Teriyaki Chicken Casserole", "Preheat oven to 350° F. Spray a 9x13-inch baking pan with non-stick spray. Combine soy sauce, ½ cup water, brown sugar, ginger and garlic in a small saucepan and cover. Bring to a boil over medium heat. Remove lid and cook for one minute once boiling. Meanwhile, stir together the corn starch and 2 tablespoons of water in a separate dish until smooth. Once sauce is boiling, add mixture to the saucepan and stir to combine. Cook until the sauce starts to thicken then remove from heat. Place the chicken breasts in the prepared pan. Pour one cup of the sauce over top of chicken. Place chicken in oven and bake 35 minutes or until cooked through. Remove from oven and shred chicken in the dish using two forks. *Meanwhile, steam or cook the vegetables according to package directions. Add the cooked vegetables and rice to the casserole dish with the chicken. Add most of the remaining sauce, reserving a bit to drizzle over the top when serving. Gently toss everything together in the casserole dish until combined. Return to oven and cook 15 minutes. Remove from oven and let stand 5 minutes before serving. Drizzle each serving with remaining sauce. Enjoy!", "https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg", "soy sauce", "water", "brown sugar", "ground ginger", "minced garlic", "cornstarch", "chicken breasts", "stir-fry vegetables", "brown rice", "", "", "", "", "", "", "", "", "", "", "", "3/4 cup", "1/2 cup", "1/4 cup", "1/2 teaspoon", "1/2 teaspoon", "4 Tablespoons", "2", "1 (12 oz.)", "3 cups", "", "", "", "", "", "", "", "", "", "", "", "mfuechec")`, function (error, results) {
-        if (error) {
-            callback(error, null);
-        } else {
-            callback(null, results);
-        }
-    })
+    console.log(meal);
+    connection.query(`INSERT IGNORE INTO MealRecipes 
+        (name, 
+        instructions, 
+        image, 
+        ingredient1, 
+        ingredient2, 
+        ingredient3, 
+        ingredient4, 
+        ingredient5, 
+        ingredient6, 
+        ingredient7, 
+        ingredient8, 
+        ingredient9, 
+        ingredient10, 
+        ingredient11, 
+        ingredient12, 
+        ingredient13, 
+        ingredient14, 
+        ingredient15, 
+        ingredient16, 
+        ingredient17, 
+        ingredient18, 
+        ingredient19, 
+        ingredient20, 
+        measurement1, 
+        measurement2, 
+        measurement3, 
+        measurement4, 
+        measurement5, 
+        measurement6, 
+        measurement7, 
+        measurement8, 
+        measurement9, 
+        measurement10, 
+        measurement11, 
+        measurement12, 
+        measurement13, 
+        measurement14, 
+        measurement15, 
+        measurement16, 
+        measurement17, 
+        measurement18, 
+        measurement19, 
+        measurement20, 
+        user) 
+        Values 
+        (${meal.user + '---' + meal.name}, 
+        ${meal.instructions},
+        ${meal.image}, 
+        ${meal.ingredients[0]}, 
+        ${meal.ingredients[1]}, 
+        ${meal.ingredients[2]}, 
+        ${meal.ingredients[3]}, 
+        ${meal.ingredients[4]}, 
+        ${meal.ingredients[5]}, 
+        ${meal.ingredients[6]}, 
+        ${meal.ingredients[7]}, 
+        ${meal.ingredients[8]}, 
+        ${meal.ingredients[9]}, 
+        ${meal.ingredients[11]}, 
+        ${meal.ingredients[12]}, 
+        ${meal.ingredients[13]}, 
+        ${meal.ingredients[14]}, 
+        ${meal.ingredients[15]}, 
+        ${meal.ingredients[16]}, 
+        ${meal.ingredients[17]}, 
+        ${meal.ingredients[18]}, 
+        ${meal.ingredients[19]},
+        ${meal.measurements[0]},
+        ${meal.measurements[1]},
+        ${meal.measurements[2]},
+        ${meal.measurements[3]},
+        ${meal.measurements[4]},
+        ${meal.measurements[5]},
+        ${meal.measurements[6]},
+        ${meal.measurements[7]},
+        ${meal.measurements[8]},
+        ${meal.measurements[9]},
+        ${meal.measurements[10]},
+        ${meal.measurements[11]},
+        ${meal.measurements[12]},
+        ${meal.measurements[13]},
+        ${meal.measurements[14]},
+        ${meal.measurements[15]},
+        ${meal.measurements[16]},
+        ${meal.measurements[17]},
+        ${meal.measurements[18]},
+        ${meal.measurements[19]},
+        ${meal.user})`,
+        function (error, results) {
+            if (error) {
+                callback(error, null);
+            } else {
+                callback(null, results);
+            }
+        })
 }
 
 deleteFavoritedMeal = function (meal, callback) {
@@ -60,13 +150,102 @@ showFavoritedDrinks = function (callback) {
 }
 
 addFavoritedDrink = function (drink, callback) {
-    connection.query(`INSERT IGNORE INTO DrinkRecipes (name, instructions, image, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, ingredient7, ingredient8, ingredient9, ingredient10, ingredient11, ingredient12, ingredient13, ingredient14, ingredient15, ingredient16, ingredient17, ingredient18, ingredient19, ingredient20, measurement1, measurement2, measurement3, measurement4, measurement5, measurement6, measurement7, measurement8, measurement9, measurement10, measurement11, measurement12, measurement13, measurement14, measurement15, measurement16, measurement17, measurement18, measurement19, measurement20, user) Values ("mfuechec---Teriyaki Chicken Casserole", "Preheat oven to 350° F. Spray a 9x13-inch baking pan with non-stick spray. Combine soy sauce, ½ cup water, brown sugar, ginger and garlic in a small saucepan and cover. Bring to a boil over medium heat. Remove lid and cook for one minute once boiling. Meanwhile, stir together the corn starch and 2 tablespoons of water in a separate dish until smooth. Once sauce is boiling, add mixture to the saucepan and stir to combine. Cook until the sauce starts to thicken then remove from heat. Place the chicken breasts in the prepared pan. Pour one cup of the sauce over top of chicken. Place chicken in oven and bake 35 minutes or until cooked through. Remove from oven and shred chicken in the dish using two forks. *Meanwhile, steam or cook the vegetables according to package directions. Add the cooked vegetables and rice to the casserole dish with the chicken. Add most of the remaining sauce, reserving a bit to drizzle over the top when serving. Gently toss everything together in the casserole dish until combined. Return to oven and cook 15 minutes. Remove from oven and let stand 5 minutes before serving. Drizzle each serving with remaining sauce. Enjoy!", "https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg", "soy sauce", "water", "brown sugar", "ground ginger", "minced garlic", "cornstarch", "chicken breasts", "stir-fry vegetables", "brown rice", "", "", "", "", "", "", "", "", "", "", "", "3/4 cup", "1/2 cup", "1/4 cup", "1/2 teaspoon", "1/2 teaspoon", "4 Tablespoons", "2", "1 (12 oz.)", "3 cups", "", "", "", "", "", "", "", "", "", "", "", "mfuechec")`, function (error, results) {
-        if (error) {
-            callback(error, null);
-        } else {
-            callback(null, results);
-        }
-    })
+    connection.query(`INSERT IGNORE INTO DrinkRecipes 
+        (name, 
+        instructions, 
+        image, 
+        ingredient1, 
+        ingredient2, 
+        ingredient3, 
+        ingredient4, 
+        ingredient5, 
+        ingredient6, 
+        ingredient7, 
+        ingredient8, 
+        ingredient9, 
+        ingredient10, 
+        ingredient11, 
+        ingredient12, 
+        ingredient13, 
+        ingredient14, 
+        ingredient15, 
+        ingredient16, 
+        ingredient17, 
+        ingredient18, 
+        ingredient19, 
+        ingredient20, 
+        measurement1, 
+        measurement2, 
+        measurement3, 
+        measurement4, 
+        measurement5, 
+        measurement6, 
+        measurement7, 
+        measurement8, 
+        measurement9, 
+        measurement10, 
+        measurement11, 
+        measurement12, 
+        measurement13, 
+        measurement14, 
+        measurement15, 
+        measurement16, 
+        measurement17, 
+        measurement18, 
+        measurement19, 
+        measurement20, 
+        user) 
+        Values 
+        (${drink.user + '---' + drink.name}, 
+        ${drink.instructions},
+        ${drink.image}, 
+        ${drink.ingredients[0]}, 
+        ${drink.ingredients[1]}, 
+        ${drink.ingredients[2]}, 
+        ${drink.ingredients[3]}, 
+        ${drink.ingredients[4]}, 
+        ${drink.ingredients[5]}, 
+        ${drink.ingredients[6]}, 
+        ${drink.ingredients[7]}, 
+        ${drink.ingredients[8]}, 
+        ${drink.ingredients[9]}, 
+        ${drink.ingredients[11]}, 
+        ${drink.ingredients[12]}, 
+        ${drink.ingredients[13]}, 
+        ${drink.ingredients[14]}, 
+        ${drink.ingredients[15]}, 
+        ${drink.ingredients[16]}, 
+        ${drink.ingredients[17]}, 
+        ${drink.ingredients[18]}, 
+        ${drink.ingredients[19]},
+        ${drink.measurements[0]},
+        ${drink.measurements[1]},
+        ${drink.measurements[2]},
+        ${drink.measurements[3]},
+        ${drink.measurements[4]},
+        ${drink.measurements[5]},
+        ${drink.measurements[6]},
+        ${drink.measurements[7]},
+        ${drink.measurements[8]},
+        ${drink.measurements[9]},
+        ${drink.measurements[10]},
+        ${drink.measurements[11]},
+        ${drink.measurements[12]},
+        ${drink.measurements[13]},
+        ${drink.measurements[14]},
+        ${drink.measurements[15]},
+        ${drink.measurements[16]},
+        ${drink.measurements[17]},
+        ${drink.measurements[18]},
+        ${drink.measurements[19]},
+        ${drink.user})`,
+        function (error, results) {
+            if (error) {
+                callback(error, null);
+            } else {
+                callback(null, results);
+            }
+        })
 }
 
 deleteFavoritedDrink = function (drink, callback) {
