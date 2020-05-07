@@ -269,12 +269,12 @@ updateFavoritedDrink = function (drink, callback) {
 }
 
 signUpAttempt = function (credentials, callback) {
-    connection.query(`SELECT COUNT(*) from Users WHERE username = ${credentials.username}`, function (error, results) {
+    connection.query(`SELECT id from Users WHERE username = '${credentials.username}'`, function (error, results) {
         if (error) {
             callback(error, null);
         } else {
-            if (results === 0) {
-                connection.query(`INSERT INTO Users (username, password) (${credentials.username, credentials.password})`, function (error, results) {
+            if (results.length === 0) {
+                connection.query(`INSERT INTO Users (username, password) VALUES ('${credentials.username}', '${credentials.password}')`, function (error, results) {
                     if (error) {
                         callback(error, null);
                     } else {
@@ -282,7 +282,7 @@ signUpAttempt = function (credentials, callback) {
                     }
                 })
             } else {
-                callback('Username already exists', null);
+                callback(null, 'Username already exists');
             }
         }
     })
