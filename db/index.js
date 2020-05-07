@@ -268,16 +268,41 @@ updateFavoritedDrink = function (drink, callback) {
     })
 }
 
-loginAttempt = function (credentials, callback) {
-    // Check if username exists
-    // Check if password matches
-    // Return true or false
+signUpAttempt = function (credentials, callback) {
+    connection.query(`SELECT COUNT(*) from Users WHERE username = ${credentials.username}`, function (error, results) {
+        if (error) {
+            callback(error, null);
+        } else {
+            if (results === 0) {
+                connection.query(`INSERT INTO Users (username, password) (${credentials.username, credentials.password})`, function (error, results) {
+                    if (error) {
+                        callback(error, null);
+                    } else {
+                        callback(null, results);
+                    }
+                })
+            } else {
+                callback('Username already exists', null);
+            }
+        }
+    })
 }
 
-signUpAttempt = function (credentials, callback) {
-    // Check if username exists
-    // Add new username/password combination
+loginAttempt = function (credentials, callback) {
+    connection.query(`SELECT id from Users WHERE username='${credentials.username}' AND password='${credentials.password}'`, function (error, results) {
+        if (error) {
+            callback(error, null);
+        } else {
+            if (results = []) {
+                callback('Username/Password combination does not match records', null);
+            } else {
+                console.log(results);
+                callback(null, results);
+            }
+        }
+    })
 }
+
 
 module.exports.showFavoritedMeals = showFavoritedMeals;
 module.exports.addFavoritedMeal = addFavoritedMeal;
@@ -288,3 +313,6 @@ module.exports.showFavoritedDrinks = showFavoritedDrinks;
 module.exports.addFavoritedDrink = addFavoritedDrink;
 module.exports.deleteFavoritedDrink = deleteFavoritedDrink;
 module.exports.updateFavoritedDrink = updateFavoritedDrink;
+
+module.exports.signUpAttempt = signUpAttempt;
+module.exports.loginAttempt = loginAttempt;
