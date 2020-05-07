@@ -268,6 +268,17 @@ updateFavoritedDrink = function (drink, callback) {
     })
 }
 
+loginAttempt = function (credentials, callback) {
+    // Check if username exists
+    // Check if password matches
+    // Return true or false
+}
+
+signUpAttempt = function (credentials, callback) {
+    // Check if username exists
+    // Add new username/password combination
+}
+
 module.exports.showFavoritedMeals = showFavoritedMeals;
 module.exports.addFavoritedMeal = addFavoritedMeal;
 module.exports.deleteFavoritedMeal = deleteFavoritedMeal;

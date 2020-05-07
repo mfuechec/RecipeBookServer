@@ -6,6 +6,8 @@ let bodyParser = require('body-parser');
 
 let addMealRoutes = require('./api-routes/editFavoriteMeals');
 let addDrinkRoutes = require('./api-routes/editFavoriteDrinks');
+let login = require('./api-routes/login');
+let signUp = require('./api-routes/signUp');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -26,6 +28,8 @@ app.listen(port, () => {
 
 app.use('/editFavoriteMeals', addMealRoutes);
 app.use('/editFavoriteDrinks', addDrinkRoutes);
+app.use('/login', login);
+app.use('/signUp', signUp);
 
 app.use((req, res, next) => {
     let error = new Error('Not found');
