@@ -119,7 +119,7 @@ addFavoritedMeal = function (meal, callback) {
 }
 
 deleteFavoritedMeal = function (meal, callback) {
-    connection.query(`DELETE from MealRecipes where name = "mfuechec---Teriyaki Chicken Casserole"`, function (error, results) {
+    connection.query(`DELETE from MealRecipes where name = "${meal.username}---${meal.name}"`, function (error, results) {
         if (error) {
             callback(error, null);
         } else {
@@ -128,15 +128,15 @@ deleteFavoritedMeal = function (meal, callback) {
     })
 }
 
-updateFavoritedMeal = function (meal, callback) {
-    connection.query(`UPDATE MealRecipes SET name="mfuechec---Chicken Teriyaki Bake" where id = "6"`, function (error, results) {
-        if (error) {
-            callback(error, null);
-        } else {
-            callback(null, results);
-        }
-    })
-}
+// updateFavoritedMeal = function (meal, callback) {
+//     connection.query(`UPDATE MealRecipes SET name="mfuechec---Chicken Teriyaki Bake" where id = "6"`, function (error, results) {
+//         if (error) {
+//             callback(error, null);
+//         } else {
+//             callback(null, results);
+//         }
+//     })
+// }
 
 showFavoritedDrinks = function (callback) {
     connection.query(`SELECT * from DrinkRecipes`, (error, results) => {
@@ -152,8 +152,9 @@ showFavoritedDrinks = function (callback) {
 }
 
 addFavoritedDrink = function (drink, callback) {
-    connection.query(`INSERT IGNORE INTO DrinkRecipes 
-        (name, 
+    let drinkName = `${drink.username}---${drink.name}`
+    connection.query(`INSERT INTO DrinkRecipes (
+        name, 
         instructions, 
         image, 
         ingredient1, 
@@ -196,51 +197,53 @@ addFavoritedDrink = function (drink, callback) {
         measurement18, 
         measurement19, 
         measurement20, 
-        user) 
-        Values 
-        (${drink.user + '---' + drink.name}, 
-        ${drink.instructions},
-        ${drink.image}, 
-        ${drink.ingredients[0]}, 
-        ${drink.ingredients[1]}, 
-        ${drink.ingredients[2]}, 
-        ${drink.ingredients[3]}, 
-        ${drink.ingredients[4]}, 
-        ${drink.ingredients[5]}, 
-        ${drink.ingredients[6]}, 
-        ${drink.ingredients[7]}, 
-        ${drink.ingredients[8]}, 
-        ${drink.ingredients[9]}, 
-        ${drink.ingredients[11]}, 
-        ${drink.ingredients[12]}, 
-        ${drink.ingredients[13]}, 
-        ${drink.ingredients[14]}, 
-        ${drink.ingredients[15]}, 
-        ${drink.ingredients[16]}, 
-        ${drink.ingredients[17]}, 
-        ${drink.ingredients[18]}, 
-        ${drink.ingredients[19]},
-        ${drink.measurements[0]},
-        ${drink.measurements[1]},
-        ${drink.measurements[2]},
-        ${drink.measurements[3]},
-        ${drink.measurements[4]},
-        ${drink.measurements[5]},
-        ${drink.measurements[6]},
-        ${drink.measurements[7]},
-        ${drink.measurements[8]},
-        ${drink.measurements[9]},
-        ${drink.measurements[10]},
-        ${drink.measurements[11]},
-        ${drink.measurements[12]},
-        ${drink.measurements[13]},
-        ${drink.measurements[14]},
-        ${drink.measurements[15]},
-        ${drink.measurements[16]},
-        ${drink.measurements[17]},
-        ${drink.measurements[18]},
-        ${drink.measurements[19]},
-        ${drink.user})`,
+        username
+        ) VALUES (
+        '${drinkName}', 
+        '${drink.instructions}', 
+        '${drink.image}', 
+        '${drink.ingredient[0]}', 
+        '${drink.ingredient[1]}', 
+        '${drink.ingredient[2]}', 
+        '${drink.ingredient[3]}', 
+        '${drink.ingredient[4]}', 
+        '${drink.ingredient[5]}', 
+        '${drink.ingredient[6]}', 
+        '${drink.ingredient[7]}', 
+        '${drink.ingredient[8]}', 
+        '${drink.ingredient[9]}', 
+        '${drink.ingredient[10]}', 
+        '${drink.ingredient[11]}', 
+        '${drink.ingredient[12]}', 
+        '${drink.ingredient[13]}', 
+        '${drink.ingredient[14]}', 
+        '${drink.ingredient[15]}', 
+        '${drink.ingredient[16]}', 
+        '${drink.ingredient[17]}', 
+        '${drink.ingredient[18]}', 
+        '${drink.ingredient[19]}', 
+        '${drink.measurement[0]}', 
+        '${drink.measurement[1]}', 
+        '${drink.measurement[2]}', 
+        '${drink.measurement[3]}', 
+        '${drink.measurement[4]}', 
+        '${drink.measurement[5]}', 
+        '${drink.measurement[6]}', 
+        '${drink.measurement[7]}', 
+        '${drink.measurement[8]}', 
+        '${drink.measurement[9]}', 
+        '${drink.measurement[10]}', 
+        '${drink.measurement[11]}', 
+        '${drink.measurement[12]}', 
+        '${drink.measurement[13]}', 
+        '${drink.measurement[14]}', 
+        '${drink.measurement[15]}', 
+        '${drink.measurement[16]}', 
+        '${drink.measurement[17]}', 
+        '${drink.measurement[18]}', 
+        '${drink.measurement[19]}', 
+        '${drink.username}'
+        )`,
         function (error, results) {
             if (error) {
                 callback(error, null);
@@ -251,7 +254,7 @@ addFavoritedDrink = function (drink, callback) {
 }
 
 deleteFavoritedDrink = function (drink, callback) {
-    connection.query(`DELETE from DrinkRecipes where name = "mfuechec---Teriyaki Chicken Casserole"`, function (error, results) {
+    connection.query(`DELETE from DrinkRecipes where name = "${drink.username}---${drink.name}"`, function (error, results) {
         if (error) {
             callback(error, null);
         } else {
@@ -260,15 +263,15 @@ deleteFavoritedDrink = function (drink, callback) {
     })
 }
 
-updateFavoritedDrink = function (drink, callback) {
-    connection.query(`UPDATE DrinkRecipes SET name="mfuechec---Chicken Teriyaki Bake" where id = "2"`, function (error, results) {
-        if (error) {
-            callback(error, null);
-        } else {
-            callback(null, results);
-        }
-    })
-}
+// updateFavoritedDrink = function (drink, callback) {
+//     connection.query(`UPDATE DrinkRecipes SET name="mfuechec---Chicken Teriyaki Bake" where id = "2"`, function (error, results) {
+//         if (error) {
+//             callback(error, null);
+//         } else {
+//             callback(null, results);
+//         }
+//     })
+// }
 
 signUpAttempt = function (credentials, callback) {
     connection.query(`SELECT id from Users WHERE username = '${credentials.username}'`, function (error, results) {
@@ -309,12 +312,12 @@ loginAttempt = function (credentials, callback) {
 module.exports.showFavoritedMeals = showFavoritedMeals;
 module.exports.addFavoritedMeal = addFavoritedMeal;
 module.exports.deleteFavoritedMeal = deleteFavoritedMeal;
-module.exports.updateFavoritedMeal = updateFavoritedMeal;
+// module.exports.updateFavoritedMeal = updateFavoritedMeal;
 
 module.exports.showFavoritedDrinks = showFavoritedDrinks;
 module.exports.addFavoritedDrink = addFavoritedDrink;
 module.exports.deleteFavoritedDrink = deleteFavoritedDrink;
-module.exports.updateFavoritedDrink = updateFavoritedDrink;
+// module.exports.updateFavoritedDrink = updateFavoritedDrink;
 
 module.exports.signUpAttempt = signUpAttempt;
 module.exports.loginAttempt = loginAttempt;

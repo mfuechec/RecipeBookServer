@@ -43,18 +43,18 @@ router.delete('/', (req, res, next) => {
     })
 })
 
-router.patch('/', (req, res, next) => {
-    let meal = req.body;
-    db.updateFavoritedDrink(meal, (error, response) => {
-        if (error) {
-            throw error;
-        } else {
-            res.status(200).json({
-                message: 'Handled PATCH request to /editFavoriteDrinks',
-                response: response
-            })
-        }
-    })
-})
+// router.patch('/', (req, res, next) => {
+//     let meal = req.body;
+//     db.updateFavoritedDrink(meal, (error, response) => {
+//         if (error) {
+//             throw error;
+//         } else {
+//             res.status(200).json({
+//                 message: 'Handled PATCH request to /editFavoriteDrinks',
+//                 response: response
+//             })
+//         }
+//     })
+// })
 
 module.exports = router;
