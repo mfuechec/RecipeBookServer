@@ -19,12 +19,10 @@ router.post('/', (req, res, next) => {
     let meal = req.body;
     db.addFavoritedDrink(meal, (error, response) => {
         if (error) {
-            throw error;
+            console.log(error);
         } else {
-            res.status(201).json({
-                message: 'Handled POST request to /editFavoriteDrinks',
-                response: response
-            })
+            res.statusMessage = 'Added to favorites';
+            res.status(201).end();
         }
     });
 })
