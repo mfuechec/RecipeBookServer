@@ -298,11 +298,10 @@ loginAttempt = function (credentials, callback) {
         if (error) {
             callback(error, null);
         } else {
-            if (results = []) {
-                callback('Username/Password combination does not match records', null);
+            if (results === []) {
+                callback(null, 'Failure');
             } else {
-                console.log(results);
-                callback(null, results);
+                callback(null, 'Success');
             }
         }
     })

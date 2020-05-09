@@ -3,6 +3,8 @@ let app = express();
 let port = process.env.PORT || 3000;
 let morgan = require('morgan');
 let bodyParser = require('body-parser');
+let cors = require('cors');
+let corsOptions = { origin: '*', optionsSuccessStatus: 200 };
 
 let addMealRoutes = require('./api-routes/editFavoriteMeals');
 let addDrinkRoutes = require('./api-routes/editFavoriteDrinks');
@@ -16,11 +18,9 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', '*');
     res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-    if (req.method === 'OPTIONS') {
-        return res.status(200).json({});
-    };
     next();
 })
+app.options('*', cors(corsOptions));
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
