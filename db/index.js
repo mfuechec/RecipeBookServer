@@ -138,7 +138,7 @@ deleteFavoritedMeal = function (meal, callback) {
 //     })
 // }
 
-showFavoritedDrinks = function (callback) {
+showFavoritedDrinks = function (username, callback) {
     connection.query(`SELECT * from DrinkRecipes WHERE username = '${username}'`, (error, results) => {
         if (error) {
             callback(error, null);
