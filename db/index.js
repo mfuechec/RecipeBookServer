@@ -283,7 +283,7 @@ signUpAttempt = function (credentials, callback) {
                     if (error) {
                         callback(error, null);
                     } else {
-                        callback(null, results);
+                        callback(null, 'Sign up successful');
                     }
                 })
             } else {

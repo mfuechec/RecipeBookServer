@@ -8,10 +8,8 @@ router.post('/', (req, res, next) => {
         if (error) {
             throw error;
         } else {
-            res.status(201).json({
-                message: 'Handled POST request to /signUp',
-                response: response
-            })
+            res.status(201);
+            res.send(response);
         }
     });
 })
