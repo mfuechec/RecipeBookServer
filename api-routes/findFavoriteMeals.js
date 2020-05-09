@@ -8,8 +8,7 @@ router.post('/', (req, res, next) => {
         if (error) {
             throw error;
         } else {
-            res.statusMessage = JSON.stringify(response);
-            res.status(201).end();
+            res.send(response);
         }
     })
 })

@@ -4,6 +4,7 @@ const mysqlConfig = require('./config.js');
 var connection = mysql.createConnection(mysqlConfig);
 
 showFavoritedMeals = function (username, callback) {
+    console.log(username)
     connection.query(`SELECT * from MealRecipes WHERE username = '${username}';`, (error, results) => {
         if (error) {
             callback(error, null);

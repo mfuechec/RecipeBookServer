@@ -8,8 +8,11 @@ router.post('/', (req, res, next) => {
         if (error) {
             throw error;
         } else {
-            res.statusMessage = response;
-            res.status(201).end();
+            if (response === 'Login attempt failed') {
+                res.status(404).end();
+            } else {
+                res.status(200).end();
+            }
         }
     });
 })
