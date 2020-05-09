@@ -8,6 +8,8 @@ let corsOptions = { origin: '*', optionsSuccessStatus: 200 };
 
 let addMealRoutes = require('./api-routes/editFavoriteMeals');
 let addDrinkRoutes = require('./api-routes/editFavoriteDrinks');
+let findMealRoutes = require('./api-routes/findFavoriteMeals');
+let findDrinkRoutes = require('./api-routes/findFavoriteDrinks');
 let login = require('./api-routes/login');
 let signUp = require('./api-routes/signUp');
 
@@ -20,7 +22,7 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
     next();
 })
-app.options('*', cors(corsOptions));
+app.options('/', cors(corsOptions));
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
@@ -28,6 +30,8 @@ app.listen(port, () => {
 
 app.use('/editFavoriteMeals', addMealRoutes);
 app.use('/editFavoriteDrinks', addDrinkRoutes);
+app.use('/findFavoriteMeals', findMealRoutes);
+app.use('/findFavoriteDrinks', findDrinkRoutes);
 app.use('/login', login);
 app.use('/signUp', signUp);
 

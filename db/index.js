@@ -3,8 +3,8 @@ const mysqlConfig = require('./config.js');
 
 var connection = mysql.createConnection(mysqlConfig);
 
-showFavoritedMeals = function (callback) {
-    connection.query(`SELECT * from MealRecipes`, (error, results) => {
+showFavoritedMeals = function (username, callback) {
+    connection.query(`SELECT * from MealRecipes WHERE username = '${username}'`, (error, results) => {
         if (error) {
             callback(error, null);
         } else {
@@ -139,7 +139,7 @@ deleteFavoritedMeal = function (meal, callback) {
 // }
 
 showFavoritedDrinks = function (callback) {
-    connection.query(`SELECT * from DrinkRecipes`, (error, results) => {
+    connection.query(`SELECT * from DrinkRecipes WHERE username = '${username}'`, (error, results) => {
         if (error) {
             callback(error, null);
         } else {
