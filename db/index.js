@@ -294,14 +294,15 @@ signUpAttempt = function (credentials, callback) {
 }
 
 loginAttempt = function (credentials, callback) {
-    connection.query(`SELECT id from Users WHERE username='${credentials.username}' AND password='${credentials.password}'`, function (error, results) {
+    connection.query(`SELECT COUNT(*) from Users WHERE username='${credentials.username}' AND password='${credentials.password}'`, function (error, results) {
         if (error) {
             callback(error, null);
         } else {
-            if (results === []) {
-                callback(null, 'Failure');
+            let keys = Object.keys(results[0]);
+            if (results[0][keys[0]] === 0) {
+                callback(null, 'Login attempt failed')
             } else {
-                callback(null, 'Success');
+                callback(null, 'Login successful')
             }
         }
     })
