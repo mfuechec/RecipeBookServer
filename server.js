@@ -17,11 +17,12 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', '*');
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+    req.header('Access-Control-Allow-Origin', '*');
+    req.header('Access-Control-Allow-Headers', '*');
+    req.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
     next();
 })
+app.use(cors());
 app.options('/', cors(corsOptions));
 
 app.listen(port, () => {
