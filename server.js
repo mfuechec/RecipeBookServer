@@ -4,7 +4,6 @@ let port = process.env.PORT || 3000;
 let morgan = require('morgan');
 let bodyParser = require('body-parser');
 let cors = require('cors');
-let corsOptions = { origin: '*', optionsSuccessStatus: 200 };
 
 let addMealRoutes = require('./api-routes/editFavoriteMeals');
 let addDrinkRoutes = require('./api-routes/editFavoriteDrinks');
@@ -20,10 +19,17 @@ app.use((req, res, next) => {
     req.header('Access-Control-Allow-Origin', '*');
     req.header('Access-Control-Allow-Headers', '*');
     req.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', '*');
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
     next();
 })
 app.use(cors());
-app.options('/', cors(corsOptions));
+app.options("*", function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", req.get("Origin") || "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.status(200).end();
+});
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
